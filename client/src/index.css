@@ -1,0 +1,36 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: #0f172a;
+  color: #f8fafc;
+  font-family: Inter, system-ui, -apple-system, Segoe UI, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  min-height: 100vh;
+}
+
+#root { min-height: 100vh; }
+
+@layer components {
+  .card {
+    @apply bg-card border border-white/8 rounded-2xl;
+  }
+  .btn-primary {
+    @apply bg-gradient-to-br from-accent to-accent-dark text-gray-900 font-bold px-4 py-2.5 rounded-xl hover:opacity-90 transition-opacity;
+  }
+  .btn-secondary {
+    @apply bg-white/5 border border-white/10 text-white px-4 py-2.5 rounded-xl hover:bg-white/10 transition-colors;
+  }
+  .input {
+    @apply w-full bg-[#0b1220] border border-white/10 text-white rounded-xl px-3.5 py-2.5 text-sm placeholder:text-slate-500 focus:outline-none focus:border-amber-500/60 transition-colors;
+  }
+  .label {
+    @apply block text-sm text-slate-300 mb-1.5 font-medium;
+  }
+}

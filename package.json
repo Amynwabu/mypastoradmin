@@ -1,0 +1,25 @@
+{
+  "name": "mypastoradmin",
+  "version": "3.0.0",
+  "description": "Secure ministry operations MVP for fellowship member care, events, prayer, communication, finance and evangelism workflows.",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "cd client && npm run dev",
+    "dev:server": "node src/server.js",
+    "dev:client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "seed": "node scripts/seed.js",
+    "check": "node scripts/smoke-check.js"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.39.0",
+    "cors": "^2.8.5",
+    "dotenv": "^16.5.0",
+    "express": "^4.21.2",
+    "node-cron": "^3.0.3"
+  }
+}
