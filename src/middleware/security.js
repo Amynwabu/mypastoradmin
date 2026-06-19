@@ -23,6 +23,14 @@ function corsGuard(req, res, next) {
 }
 
 const buckets = new Map();
+// Evict expired buckets every 60 s to prevent unbounded growth
+setInterval(() => {
+  const now = Date.now();
+  for (const [key, bucket] of buckets) {
+    if (bucket.resetAt < now) buckets.delete(key);
+  }
+}, 60_000).unref(); // .unref() so this timer won't keep the process alive on its own
+
 function rateLimit({ windowMs = 60_000, max = 120 } = {}) {
   return (req, res, next) => {
     const key = req.ip || req.socket.remoteAddress || 'unknown';

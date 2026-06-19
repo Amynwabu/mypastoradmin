@@ -7,7 +7,7 @@ const whatsapp = require('../services/whatsappService');
 const router = express.Router();
 router.use(authenticate);
 
-router.get('/', (req, res) => res.json(repos.messages.all().slice(-100).reverse()));
+router.get('/', allow('pastor', 'super_admin', 'admin'), (req, res) => res.json(repos.messages.all().slice(-100).reverse()));
 
 // Approve a message (moves to Approved status, ready to send)
 router.patch('/:id/approve', allow('pastor', 'super_admin', 'admin'), (req, res) => {

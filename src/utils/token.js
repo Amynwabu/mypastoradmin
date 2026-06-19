@@ -22,7 +22,9 @@ function verifyToken(token) {
   if (parts.length !== 3) return null;
   const unsigned = `${parts[0]}.${parts[1]}`;
   const expected = sign(unsigned);
-  if (!crypto.timingSafeEqual(Buffer.from(parts[2]), Buffer.from(expected))) return null;
+  const a = Buffer.from(parts[2]);
+  const b = Buffer.from(expected);
+  if (a.length !== b.length || !crypto.timingSafeEqual(a, b)) return null;
   const payload = JSON.parse(Buffer.from(parts[1], 'base64url').toString('utf8'));
   if (payload.exp && payload.exp < Math.floor(Date.now() / 1000)) return null;
   return payload;
